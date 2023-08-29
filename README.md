@@ -1,5 +1,5 @@
 tsc -w         typescript compiler en modo observador
-nodemon dist
+nodemon dist/
 
 Instalación para el server
 npm install express             Permite crear un srv web y montar un srv REST
@@ -12,3 +12,5 @@ npm install bcrypt              Permite encriptar las pass de los usuarios
 
 --Instalación en una sola línea
 npm install express body-parser cors mongoose express-fileupload jsonwebtoken bcrypt
+
+npm i --save-dev @types/express  Me saca las dependencias de desarrollo en prod
