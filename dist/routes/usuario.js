@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const usuario_model_1 = require("../models/usuario.model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const token_1 = __importDefault(require("../classes/token"));
 const userRoutes = (0, express_1.Router)();
 //Login
 userRoutes.post('/login', async (req, res) => {
@@ -21,9 +22,15 @@ userRoutes.post('/login', async (req, res) => {
         }
         console.log(userDB);
         if (bcrypt_1.default.compareSync(body.password, userDB.password)) {
+            const tokenUser = token_1.default.getJwtToken({
+                _id: userDB.id,
+                nombre: userDB.nombre,
+                email: userDB.email,
+                avatar: userDB.avatar
+            });
             res.json({
                 ok: true,
-                token: 'Token por desarrollar'
+                token: tokenUser
             });
         }
         else {
@@ -46,9 +53,15 @@ userRoutes.post('/create', (req, res) => {
         avatar: req.body.avatar,
     };
     usuario_model_1.Usuario.create(user).then(userDB => {
+        const tokenUser = token_1.default.getJwtToken({
+            _id: userDB.id,
+            nombre: userDB.nombre,
+            email: userDB.email,
+            avatar: userDB.avatar
+        });
         res.json({
             ok: true,
-            user: userDB
+            token: tokenUser
         });
     }).catch(err => {
         res.json({

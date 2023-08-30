@@ -21,3 +21,6 @@ npm i @types/mongoose --save-dev
 
 --Encriptar pass
 npm i @types/bcrypt --save-dev
+
+--Token
+npm i @types/jsonwebtoken --save-dev
