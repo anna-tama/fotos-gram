@@ -7,12 +7,37 @@ const express_1 = require("express");
 const usuario_model_1 = require("../models/usuario.model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const userRoutes = (0, express_1.Router)();
-// userRoutes.get('/prueba', (req: Request, res: Response) => {
-//     res.json({
-//         ok: true,
-//         mensaje: 'todo ok'
-//     })
-// })
+//Login
+userRoutes.post('/login', async (req, res) => {
+    try {
+        const body = req.body;
+        const userDB = await usuario_model_1.Usuario.findOne({ email: body.email }, 'password').exec();
+        console.log(userDB);
+        if (!userDB) {
+            return res.json({
+                ok: false,
+                mensaje: 'Usuario/Contraseña no son correctos'
+            });
+        }
+        console.log(userDB);
+        if (bcrypt_1.default.compareSync(body.password, userDB.password)) {
+            res.json({
+                ok: true,
+                token: 'Token por desarrollar'
+            });
+        }
+        else {
+            return res.json({
+                ok: false,
+                mensaje: 'Usuario/Contraseña no son correctoS ***'
+            });
+        }
+    }
+    catch (err) {
+        throw err;
+    }
+});
+//Crear usuarios
 userRoutes.post('/create', (req, res) => {
     const user = {
         nombre: req.body.nombre,
