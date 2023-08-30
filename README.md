@@ -14,3 +14,7 @@ npm install bcrypt              Permite encriptar las pass de los usuarios
 npm install express body-parser cors mongoose express-fileupload jsonwebtoken bcrypt
 
 npm i --save-dev @types/express  Me saca las dependencias de desarrollo en prod
+
+--Levantar bd
+mongod
+npm i @types/mongoose --save-dev
