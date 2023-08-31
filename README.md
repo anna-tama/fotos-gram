@@ -24,3 +24,6 @@ npm i @types/bcrypt --save-dev
 
 --Token
 npm i @types/jsonwebtoken --save-dev
+
+--Fileupload
+npm i --save-dev @types/express-fileupload

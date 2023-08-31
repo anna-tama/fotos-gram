@@ -36,4 +36,30 @@ postRoutes.post('/', [autenticacion_1.verificaToken], (req, res) => {
         res.json(err);
     });
 });
+//Servicio para subir archivos
+postRoutes.post('/upload', [autenticacion_1.verificaToken], (req, res) => {
+    if (!req.files) {
+        return res.status(400).json({
+            ok: false,
+            mensaje: 'No se subió ningún archivo'
+        });
+    }
+    const file = req.files.image;
+    if (!file) {
+        return res.status(400).json({
+            ok: false,
+            mensaje: 'No se subió ningún archivo - image'
+        });
+    }
+    if (!file.mimetype.includes('image')) {
+        return res.status(400).json({
+            ok: false,
+            mensaje: 'No se subió ningún archivo de tipo image'
+        });
+    }
+    res.json({
+        ok: false,
+        file: file.mimetype
+    });
+});
 exports.default = postRoutes;

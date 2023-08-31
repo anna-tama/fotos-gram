@@ -1,6 +1,8 @@
 import bodyParser from "body-parser";
-import Server from "./classes/server";
 import mongoose from 'mongoose';
+import fileUpload from 'express-fileupload';
+
+import Server from "./classes/server";
 
 import userRoutes from "./routes/usuario";
 import postRoutes from "./routes/posts";
@@ -11,6 +13,8 @@ const server = new Server();
 server.app.use(bodyParser.urlencoded({ extended: true }));
 server.app.use(bodyParser.json()); //la informacion de los posteos pasa por un json
 
+//FileUpload
+server.app.use(fileUpload());
 
 //Rutas de mi app
 server.app.use('/user', userRoutes)
