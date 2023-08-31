@@ -27,3 +27,7 @@ npm i @types/jsonwebtoken --save-dev
 
 --Fileupload
 npm i --save-dev @types/express-fileupload
+
+--UniqueId
+npm i uniqid
+npm install @types/uniqid --save-dev 

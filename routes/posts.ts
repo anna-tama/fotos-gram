@@ -2,8 +2,11 @@ import { Router, Response } from "express";
 import { verificaToken } from "../middlewares/autenticacion";
 import { Post } from "../models/post.model";
 import { FileUpload } from "../interfaces/file-upload";
+import FileSystem from "../classes/file-system";
 
 const postRoutes = Router();
+const fileSystem = new FileSystem();
+
 
 
 //Obtener POST paginados
@@ -59,22 +62,25 @@ postRoutes.post('/upload', [verificaToken], (req: any, res: Response) => {
 
     const file: FileUpload = req.files.image;
 
-    if(!file){
+    if (!file) {
         return res.status(400).json({
             ok: false,
             mensaje: 'No se subió ningún archivo - image'
         })
     }
 
-    if(!file.mimetype.includes('image')){
+    if (!file.mimetype.includes('image')) {
         return res.status(400).json({
             ok: false,
             mensaje: 'No se subió ningún archivo de tipo image'
         })
     }
 
+    fileSystem.guardarImagenTemporal(file, req.usuario._id);
+
+
     res.json({
-        ok: false,
+        ok: true,
         file: file.mimetype
     })
 
