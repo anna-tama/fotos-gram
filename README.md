@@ -18,3 +18,16 @@ npm i --save-dev @types/express  Me saca las dependencias de desarrollo en prod
 --Levantar bd
 mongod
 npm i @types/mongoose --save-dev
+
+--Encriptar pass
+npm i @types/bcrypt --save-dev
+
+--Token
+npm i @types/jsonwebtoken --save-dev
+
+--Fileupload
+npm i --save-dev @types/express-fileupload
+
+--UniqueId
+npm i uniqid
+npm install @types/uniqid --save-dev 
