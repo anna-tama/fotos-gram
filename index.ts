@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import fileUpload from 'express-fileupload';
 
 import Server from "./classes/server";
+import cors from 'cors';
 
 import userRoutes from "./routes/usuario";
 import postRoutes from "./routes/posts";
@@ -14,7 +15,10 @@ server.app.use(bodyParser.urlencoded({ extended: true }));
 server.app.use(bodyParser.json()); //la informacion de los posteos pasa por un json
 
 //FileUpload
-server.app.use(fileUpload({useTempFiles:true}));
+server.app.use(fileUpload({ useTempFiles: true }));
+
+//Configurar CORS
+server.app.use(cors({ origin: true, credentials: true })) //acepta peticiones de otros origenes
 
 //Rutas de mi app
 server.app.use('/user', userRoutes)
