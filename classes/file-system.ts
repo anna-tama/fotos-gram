@@ -7,6 +7,7 @@ import uniqid from "uniqid";
 
 export default class FileSystem {
 
+
     constructor() { }
 
     guardarImagenTemporal(file: FileUpload, userId: string) {
@@ -87,5 +88,19 @@ export default class FileSystem {
         const idUnico = uniqid();
 
         return `${idUnico}.${extension}`;
+    }
+
+    getFotoUrl(userId: string, img: string) {
+        //path posts
+        const pathFoto = path.resolve(__dirname, '../uploads/', userId, 'posts', img);
+
+        //si la img existe
+        const existe = fs.existsSync(pathFoto)
+        if(!existe){
+            return path.resolve(__dirname,'../assets/400x250.jpg')
+        }
+
+        return pathFoto;
+
     }
 }

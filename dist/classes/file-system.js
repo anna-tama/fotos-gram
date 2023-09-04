@@ -67,5 +67,15 @@ class FileSystem {
         const idUnico = (0, uniqid_1.default)();
         return `${idUnico}.${extension}`;
     }
+    getFotoUrl(userId, img) {
+        //path posts
+        const pathFoto = path_1.default.resolve(__dirname, '../uploads/', userId, 'posts', img);
+        //si la img existe
+        const existe = fs_1.default.existsSync(pathFoto);
+        if (!existe) {
+            return path_1.default.resolve(__dirname, '../assets/400x250.jpg');
+        }
+        return pathFoto;
+    }
 }
 exports.default = FileSystem;
