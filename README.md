@@ -1,34 +1,19 @@
-tsc -w         typescript compiler en modo observador
-nodemon dist/
+# Fotosgram-server
 
-Instalación para el server
-npm install express             Permite crear un srv web y montar un srv REST
-npm install body-parser         Permite recibir la info de post y transformarlo en un obj js
-npm install cors                Permite hacer peticiones cors domain
-npm install @types/cors
-npm install mongoose            Permite trabajar con el modelado de datos por parte de node y hacer interacciones con la bd
-npm install express-fileupload  Permite recibir recibir las peticiones de img que voy a recibir de ionic
-npm install jsonwebtoken        Permite la autenticación de la app mediante web tocken
-npm install bcrypt              Permite encriptar las pass de los usuarios
+En este proyecto se creó el backend para la red social "Fotosgram-app". Utiliza Express como marco de aplicación web Node.js que proporciona un conjunto sólido de funciones para aplicaciones web y móviles. En tanto al  modelado de datos e intreacciones con la bd se optó por mongodb. La aplicación en términos generales permite hacer peticiones cors domain, recibir las peticiones de imágenes, autenticar la app mediante JSON Web Token y utiliza bcrypt para encriptar la contraseña de los usuarios. Finalmente permite la carga de archivos con express-fileupload.
 
---Instalación en una sola línea
-npm install express body-parser cors mongoose express-fileupload jsonwebtoken bcrypt
+## Tecnologías
+- Node
+- Express
+- Mongodb
+- JSON Web Token 
 
-npm i --save-dev @types/express  Me saca las dependencias de desarrollo en prod
+## Comandos
+### Iniciar servidor local
+El siguiente comando iniciará la base de datos:
+> mongod
 
---Levantar bd
-mongod
-npm i @types/mongoose --save-dev
+Para iniciar la servidor Node, ejecute:
+> tsc
+> node dist/
 
---Encriptar pass
-npm i @types/bcrypt --save-dev
-
---Token
-npm i @types/jsonwebtoken --save-dev
-
---Fileupload
-npm i --save-dev @types/express-fileupload
-
---UniqueId
-npm i uniqid
-npm install @types/uniqid --save-dev 
